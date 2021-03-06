@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/mcseekeri
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://mcseekeri.top
+  * I am mcseekeri (https://keybase.io/mcseekeri) on keybase.
+  * I have a public key ASCdrIGwquvl7zTnksCpVbXtunox0ZO6sO8gW8bB-uGOuwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101a53e190479e61c129b37cf785c0d9f2c461571419714c5f259786a7bdff943240a",
+      "host": "keybase.io",
+      "kid": "01209dac81b0aaebe5ef34e792c0a955b5edba7a31d193bab0ef205bc6c1fae18ebb0a",
+      "uid": "ac5d7eb0c64b0c2ae9c8f6909a7beb19",
+      "username": "mcseekeri"
+    },
+    "merkle_root": {
+      "ctime": 1608369986,
+      "hash": "8f806644e30a344fc11172e6f27f603c300c9dbb9bfac31e69a3da979ca4849125b794d23d450caa88b9a37f9709880858639fd3bd91c1fac830b266f5529300",
+      "hash_meta": "095313e6a52855f8d28ef363c8c61c2bf42e3268b695eb328c3fdbe7b022c45d",
+      "seqno": 18448509
+    },
+    "service": {
+      "entropy": "T1Zvn0RvhnaSmStX5lmpDUgG",
+      "hostname": "mcseekeri.top",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1608370110,
+  "expire_in": 504576000,
+  "prev": "ad70848360dedfac076500e679feb2b7121c46a119d332470960432752bc8795",
+  "seqno": 70,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgnayBsKrr5e8055LAqVW17bp6MdGTurDvIFvGwfrhjrsKp3BheWxvYWTESpcCRsQgrXCEg2De36wHZQDmef6ytxIcRqEZ0zJHCWBDJ1K8h5XEIIQvb90b6oPXiuy9xbaEEI+7V9wGMYmAxHTxwQ4OE428AgHCo3NpZ8RAyb3Uc8NQDkMPF3IGm9rndx9zs2vH+zKL4YfNRgbjFlWCiJnoisfPXAu9Znjq06SbtkswTKUQmCNp6fnAAOGTBahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEINwCwHS55yIuWzY77wAFNr2O3+iR4SxWZ8uz7HzU3YRGo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mcseekeri
+
+==================================================================

@@ -1,0 +1,581 @@
+
+############################### Navigation Bar ############################### > start
+navbar:
+  visiable: always # always, auto
+  logo: # choose [img] or [icon + title]
+    img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@latest/img/custom/MCSeekeri.jpg
+    icon:
+    title:
+  menu:
+    - name: 导航
+      icon: fal fa-cube
+      rows:
+        - name: 分类
+          icon: fal fa-folder-open
+          url: categories/
+        - name: 标签
+          icon: fal fa-hashtag
+          url: tags/
+        - name: 归档
+          icon: fal fa-list
+          url: archives/
+    - name: 关于
+      icon: fal fa-info
+      rows:
+        - name: 我&本站
+          icon: fal fa-user-circle
+          url: about/
+        - name: 说说
+          icon: fal fa-comment-alt-smile
+          url: talk/
+        - name: 留言
+          icon: fal fa-comment-dots
+          url: comment/
+    - name: 更多
+      icon: fal fa-ellipsis-v
+      rows:
+        - name: RSS订阅
+          icon: fal fa-rss
+          url: atom.xml
+        - name: 站点地图
+          icon: fal fa-sitemap
+          url: sitemap.xml
+        - name: 可用性检测
+          icon: fal fa-telescope
+          url: https://status.mcseekeri.top 
+        - name: 开往
+          icon: fal fa-map-signs
+          url: https://travellings.now.sh/
+  search: 要搜索什么呢...   # Search bar placeholder
+############################### Navigation Bar ############################### > end
+
+
+############################### Cover ############################### > start
+cover:
+  height_scheme: half # full, half
+  title: ''
+  search: 要搜索什么呢... # search bar placeholder
+  features:
+    - name: 主页
+      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/file-manager.svg
+      url: /
+    - name: 归档
+      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/irix.svg
+      url: archives/
+    - name: 分类
+      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/web-browser.svg
+      url: categories/
+    - name: 留言
+      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/notification.svg
+      url: comment/
+    - name: 关于
+      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/cs-user.svg
+      url: about/
+    #- name: GitHub
+    #  img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/github-desktop.svg
+    #  url: https://github.com/MCSeekeri
+############################### Cover ############################### > end
+############################### Article Layout ############################### > start
+# 文章布局
+article:
+  # 文章列表页面的文章卡片布局方案
+    body:
+      top_meta: [author, category, date, counter]
+    footer_widget:
+      references:
+        title: 参考资料
+        icon: fal fa-quote-left
+        # 在 front-matter 中:
+        #   references:
+        #     - title: 某篇文章
+        #       url: https://
+        # 即可显示此组件。
+      # ----------------
+      # 相关文章，需要安装插件 (for layout: post)
+      # npm i hexo-related-popular-posts
+      related_posts:
+        enable: false
+        title: 相关文章
+        icon: fas fa-bookmark
+        max_count: 5
+        # 设为空则不使用文章头图
+        placeholder_img: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
+      # ----------------
+      # 版权声明组件 (for layout: post)
+      copyright:
+        enable: true
+        permalink: '本文永久链接是：'
+        content:
+          - '博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议'
+          - permalink
+      # ----------------
+      # 打赏组件 (for layout: post)
+      donate:
+        enable: false
+        images:
+          - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+          - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+    # 文章底部信息
+    # 从 meta_library 中取
+    bottom_meta: [updated, tags, share]
+    # meta library
+      
+    meta_library:
+      # 默认文章作者（可在 front-matter 中覆盖）
+      author:
+        avatar: /favicon.ico
+        name: MCSeekeri
+        url: about/
+      # 文章创建日期
+      date:
+        icon: fal fa-calendar-alt
+        title: '发布于：'
+        format: 'll' # 日期格式 http://momentjs.com/docs/
+      # 文章更新日期
+      updated:
+        icon: fal fa-edit
+        title: '更新于：'
+        format: 'll' # 日期格式 http://momentjs.com/docs/
+      # 文章分类
+      category:
+        icon: fal fa-folder-open
+
+      counter:
+        icon: fal fa-eye
+      # 文章评论数量：只支持 valine
+      valinecount:
+        icon: fal fa-comment-dots
+      # 文章字数和阅读时长
+      wordcount:
+        icon_wordcount: fal fa-keyboard
+        icon_duration: fal fa-hourglass-half
+      # 文章标签
+      tags:
+        icon: fal fa-hashtag
+      # 分享
+      share:
+        - id: qq
+          img: https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png
+        - id: qzone
+          img: https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png
+        - id: weibo
+          img: https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png
+        - id:  qrcode # 当id为qrcode时需要安装插件  npm i hexo-helper-qrcode
+          img:  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/wechat.png
+        - id:  telegram
+          img:  https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/telegram.png
+############################### Article Layout ############################### > end
+
+
+############################### Comments ############################### > start
+comments:
+  title: <i class='fal fa-comments'></i> 评论
+  service: minivaline # valine, minivaline, disqus, gitalk, vssue, livere, isso, hashover
+  # Valine
+  # https://valine.js.org/
+
+minivaline:
+    placeholder: 欢迎评论，会自动显示Gravatar头像  # 全局评论占位提示
+    # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el path placeholder] 选项）  
+    # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
+    # 下面是一个例子：
+    serverURL: https://mccomments.now.sh
+    mode: xCss
+    md: true
+    RecordIP: false
+    visitor: false
+    enableFlag: true
+    enableUA: true
+    cloudflag: true
+    avatarD: mp
+    emoticonUrl:
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/bilibilitv
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Coolapk
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Heybox
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Menhera-chan
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/QQ
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Tieba
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Tieba-New
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/weibo
+    tagMeta:
+      - Master
+      - Admin
+      - Guest
+    master:
+      - 2fe1b9f7d79c288f4d7b8bc15b0227a4
+    friends:
+      - 19f2f82559c52e9d5ed1c7eba89b55b0
+      - 0ec123bd8833f0bfda32879a8c13b074
+   
+
+############################### Sidebar ############################### > start
+sidebar:
+  # 主页、分类、归档等独立页面
+  for_page: [blogger, category, tagcloud, webinfo]
+  # layout: docs/post 这类文章页面
+  for_post: [toc]
+  # 侧边栏组件库
+  widget_library:
+    # ---------------------------------------
+    # blogger info widget
+    blogger:
+      avatar: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn/img/custom/MCSeekeri.jpg
+      title: MC探索者i的博客
+      subtitle: 一般普通技术爱好者的日常
+      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
+      social:
+        - icon: fal fa-rss
+          url: /atom.xml
+        - icon: fal fa-envelope
+          url: mailto:mctsz@outlook.com
+        - icon: fal fa-github
+          url: https://github.com/MCSeekeri
+        #- icon: fal fa-headphones-alt
+        #  url: /
+    # ---------------------------------------
+    # toc widget (valid only in articles)
+    toc:
+      header:
+        icon: fal fa-list
+        title: 本文目录
+      
+    # ---------------------------------------
+    # category widget
+    category:
+      class: category
+      display: [desktop] # [desktop, mobile]
+      header:
+        icon: fal fa-folder-open
+        title: 文章分类
+        url: /categories/
+    # ---------------------------------------
+    # tagcloud widget
+    tagcloud:
+      class: tagcloud
+      display: [desktop, mobile] # [desktop, mobile]
+      header:
+        icon: fal fa-tags
+        title: 热门标签
+        url: /tags/
+      min_font: 14
+      max_font: 24
+      color: true
+      start_color: '#999'
+      end_color: '#555'
+
+    webinfo:
+      class: webinfo
+      display: [desktop]
+      header:
+        icon: fal fa-award
+        title: 站点信息
+      type:
+        article:
+          enable: true
+          text: '文章数目：'
+          unit: '篇'
+        runtime:
+          enable: true
+          data: '2019/07/28'    # 填写建站日期
+          text: '已运行时间：'
+          unit: '天'
+        
+############################### Sidebar ############################### > end
+
+
+############################### Tag Plugins ############################### > start
+# 内置标签插件的配置
+tag_plugins:
+  # {% note text %}
+  note: # style for default note:
+    icon: '\f054'
+    color: ''
+    iconfont: 'Font Awesome 5 Pro'
+  # {% checkbox %}
+  checkbox:
+    interactive: false # enable interactive for user
+    color: '' # color for default checkbox
+  # {% link title, url, img %}
+  link:
+    placeholder: https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/safari.svg
+############################### Tag Plugins ############################### > end
+
+
+############################### Site Footer ############################### > start
+site_footer:
+  # layout of footer: [aplayer, social, license, info, copyright]
+  layout: [aplayer, social, license, analytics, info, copyright]
+  social:
+    - icon: #fal fa-rss
+      url:
+    # or
+    - img:
+      url:
+    # or
+    - avatar:
+      url:
+  # site source
+  source: https://github.com/volantis-x/volantis-docs/
+  # analytics using leancloud
+  analytics: >
+    <span id="lc-sv">本站总访问量为 <span id='number'><i class="fal fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span>
+    <span id="lc-uv">访客数为 <span id='number'><i class="fal fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span>
+  # site copyright
+  copyright: '[下北泽ICP备 114514号 ](/)'
+  # You can add your own property here. (Support markdown, for example: br: '<br>')
+  br: <br>
+############################### Site Footer ############################### > end
+
+############################### Plugins ############################### > start
+plugins:
+  ################ required plugins ################
+  # jquery
+  jquery: https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js
+  # fontawesome
+  fontawesome: https://cdn.jsdelivr.net/gh/volantis-x/cdn-fontawesome-pro@5.13.1/css/all.min.css
+  ################ optional plugins ################
+
+  ######## Plugins to improve loading speed:
+
+  # 预加载
+  
+  # 图片懒加载
+  # https://www.npmjs.com/package/vanilla-lazyload
+  lazyload:
+    enable: true
+    js: https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js
+    onlypost: false
+    loadingImg: # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@3/img/placeholder/c617bfd2497fcea598e621413e315c368f8d8e.svg
+    blurIn: true # 模糊加载效果 （loadingImg为空时有效）
+
+  ######## Plugins to optimize the experience:
+
+  # highlight.js
+  highlightjs:
+    enable: true # Please set hexo.config.highlight.enable = false !!!
+    js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js
+    css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css
+    # more: https://www.jsdelivr.com/package/npm/highlight.js?path=styles
+
+  # https://scrollrevealjs.org/api/reveal.html
+  scrollreveal:
+    enable: true
+    js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js
+    distance: 32px
+    duration: 800 # ms
+    interval: 20 # ms
+    scale: 1 # 0.1~1
+
+  # Codeblock Copy Button
+  clipboard:
+    enable: true
+    js: https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
+
+  ######## Plugins for SEO:
+
+  # npm i hexo-wordcount
+  wordcount:
+    enable: true
+  
+  # Slide Background
+  backstretch:
+    enable: true
+    js: https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js
+    position: cover       # cover: sticky on the cover.   fixed: Fixed as background for the site.
+    shuffle: true         # shuffle playlist
+    duration: 10000       # Duration (ms)
+    fade: 1500            # fade duration (ms) (Not more than 1500)
+    images:               # For personal use only. At your own risk if used for commercial purposes !!!
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover1.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover2.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover3.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover4.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover5.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover6.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover7.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover8.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover9.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover10.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover11.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover12.webp
+      - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover13.webp
+
+  pjax:
+    enable: true
+    timeout: 5000        # The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
+    cacheBust: false     # When set to true, Pjax appends a timestamp  to skip the browser cache.
+    animation: nprogress # nprogress, circle
+    banUrl:              # 被屏蔽的 url 地址将不启用 pjax 跳转，可以在控制台下使用 window.location.pathname 获取
+       - /talk/     # artitalk 不支持 pjax
+       - /talk/index.html 
+  killNoScript:
+    enable: false
+
+  # Artitalk https://artitalk.js.org
+  # 配置过程请参考：https://artitalk.js.org/doc.html
+  # 使用过旧版本的请修改Leancloud shuoshuo class部分列名：https://artitalk.js.org/release.html
+  # 除appID和appKEY外均为选填项
+  artitalk:
+    # Set `layout: artitalk` to enable in page
+    appId: TRwC4n7CDChkHnl2Qp67cpsr-MdYXbMMI # your appID
+    appKey: B6jj4zKhiDTOB8VszVQsLKCk # your appKEY
+    # serverURL:  #leancloud绑定的安全域名，使用国际版的话不需要填写
+    # lang: # 语言设置，zh为汉语，en为英语，es为西班牙语。默认为汉语
+    # pageSize: #每页说说的显示数量
+    # shuoPla: #在编辑说说的输入框中的占位符
+    # avatarPla: #自定义头像url的输入框的占位符
+    # motion: #加载动画的开关，1为开，0为关，默认为开
+    # bgImg: #说说输入框背景图片url
+    # color1: #说说背景颜色1&按钮颜色1
+    # color2: #说说背景颜色2&按钮颜色2
+    # color3: #说说字体颜色
+    # cssUrl: #自定义css接口
+
+  tidio:
+    enable: #true
+    id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+############################### Plugins ############################### > end
+
+############################### Rightmenu ############################### > start
+# 自定义右键菜单
+rightmenu:
+  enable: true
+  # hr: 分割线, music: 音乐控制器
+  layout: [open_new, copy_text, copy_src, copy_href, navigation, print, hr, music]
+  # 可选功能项
+  open_new:
+    name: 在新标签页打开
+    icon: fal fa-external-link-square-alt
+    id: menu-open-new
+  copy_text:
+    name: 复制文本
+    icon: fal fa-copy
+    id: menu-copy-text
+    onclick: document.execCommand('copy')
+  copy_src:
+    name: 复制图片地址
+    icon: fal fa-image
+    id: menu-copy-src
+  copy_href:
+    name: 复制链接
+    icon: fal fa-link
+    id: menu-copy-href
+  print:
+    name: 打印页面
+    icon: fa fa-print
+    onclick: document.execCommand('print')
+  # 自定义菜单的格式如下
+  help:
+    name: 常见问题
+    icon: fa fa-question
+    url: https://volantis.js.org/faqs/
+  examples:
+    name: 示例博客
+    icon: fa fa-rss
+    url: https://volantis.js.org/examples/
+  contributors:
+    name: 加入社区
+    icon: fa fa-fan fa-spin
+    url: https://volantis.js.org/contributors/
+  source_docs:
+    name: 本站源码
+    icon: fa fa-code-branch
+    url: https://github.com/volantis-x/volantis-docs/
+  source_theme:
+    name: 主题源码
+    icon: fa fa-code-branch
+    url: https://github.com/volantis-x/hexo-theme-volantis/
+  dark_mode:
+    name: 夜间模式
+    icon: fas fa-moon
+    toggle: darkmode
+############################### Rightmenu ############################### > end
+
+
+############################### Search ############################### > start
+# To use hexo search, you need to install the following plugins:
+# npm i hexo-generator-search hexo-generator-json-content
+search:
+  enable: true
+  service: hexo  # hexo, google, algolia, azure, baidu
+  js:
+  google:
+    apiKey:
+    engineId:
+  algolia:
+    applicationID:
+    apiKey:
+    indexName:
+  azure:
+    serviceName:
+    indexName:
+    queryKey:
+  baidu:
+    apiId:
+############################### Search ############################### > end
+
+############################### Color Scheme ############################### > start
+############################### Color Scheme ############################### > end
+
+############################### Custom css ############################### > start
+custom_css:
+  toc_smooth: true # TOC 目录平滑滚动效果
+  cursor:
+    enable: true
+    text: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/text.cur
+    pointer: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/link.cur
+    default: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/pointer.cur
+    not-allowed: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/unavailiable.cur
+    zoom-out: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/alternate.cur
+    zoom-in: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/alternate.cur
+    grab: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/move.cur
+  
+  fontfamily:
+    logofont:
+      #fontfamily: '"Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial'
+      fontfamily: '"Dosis", "Noto Serif SC", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif'
+
+      #name: 'Varela Round'
+      #url: https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/VarelaRound/VarelaRound-Regular.ttf
+      #weight: normal
+      #style: normal
+    bodyfont:
+      #fontfamily: 'UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial'
+      fontfamily: 'Dosis, "Noto Serif SC", "PingFang SC", "Microsoft Yahei UI", "Microsoft Yahei", sans-serif'
+      #name: 'UbuntuMono'
+      #url: https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/UbuntuMono/UbuntuMono-Regular.ttf
+      #weight: normal
+      #style: normal
+    codefont:
+      fontfamily: 'Dosis, "Microsoft Yahei UI"'
+      # name: 'Monaco'
+      # url: https://cdn.jsdelivr.net/gh/volantis-x/cdn-fonts/Monaco/Monaco.ttf
+      # weight: normal
+      # style: normal
+############################### Custom css ############################### > end
+
+
+############################### Analytics ############################### > start
+analytics:
+  busuanzi: #https://cdn.jsdelivr.net/gh/volantis-x/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js
+  leancloud: # 请使用自己的 id & key 以防止数据丢失
+    app_id: FBF2Sre1YARfXWRqx5gCaE8S-MdYXbMMI
+    app_key: YHK1hVdpie3MW8R1ykctusbo
+    custom_api_server: # 国际版一般不需要写，除非自定义了 API Server
+############################### Analytics ############################### > end
+
+############################### SEO ############################### > start
+seo:
+  # When there are no keywords in the article's front-matter, use tags as keywords.
+  use_tags_as_keywords: true
+  # When there is no description in the article's front-matter, use excerpt as the description.
+  use_excerpt_as_description: true
+  robots:
+    home_first_page: index,follow
+    home_other_pages: noindex,follow
+    archive: noindex,follow
+    category: noindex,follow
+    tag: noindex,follow
+    # robots can be written in front-matter
+############################### SEO ############################### > end
