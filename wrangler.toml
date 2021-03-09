@@ -1,7 +1,7 @@
 name = "blog"
 type = "webpack"
 account_id = "e948fb59c8aa2a756017549554f66d6a"
-workers_dev = true
+workers_dev = false
 route = "blog.mcseekeri.top/*"
 zone_id = "1accbbb71cfa999af490708dd3973acb"
 
