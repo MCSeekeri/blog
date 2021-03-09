@@ -1,4 +1,4 @@
-import { getAssetFromKV, mapRequestToAsset } from'@cloudflare/kv-asset-handler';
+const { getAssetFromKV } = require('kv4cf');
 
 addEventListener('fetch', (event) => {
     try {
