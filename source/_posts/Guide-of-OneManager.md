@@ -115,30 +115,38 @@ updated: 2021-05-02 17:21:00
 
 ### 平台变量
 - adminloginpage
+
 隐藏登录按钮,只能通过访问[你的域名]/?[设置的内容]来打开管理界面
 > 示例: login
 > 访问:https://example.com/?login
 
 - autoJumpFirstDisk
+
 添加多盘时加一个跳转,不设置的话访问根目录时会让你选择哪个盘,设为1会自动打开第一个盘。
 
 - background
+
 背景图片,建议使用[去不图床](https://7bu.top),速度和稳定性都有保证,上传完把链接丢过来
 > 示例: https://cdn.jsdelivr.net/npm/mcseekeri@1.2.3/img/FutureGadgetLab.webp
 
 - backgroundm
+
 同上,只不过是给手机准备的。
 
 - customCss
+
 自定义CSS格式,一般用户直接无视就好
 
 - customScript
+
 在每个页面里插入JS脚本,可以放统计代码啥的。
 因为屑逸笙没写多行处理,所以你直接在别的地方写完复制到这就行
-> 示例: <script>   window.ga_tid = 'UA-104605102-3';   (function() {     var dga = document.createElement("script");     dga.src = "https://rmt.dogedoge.com/fetch/public/ga.js";     var s = document.getElementsByTagName("script")[0];     s.parentNode.insertBefore(dga, s);   })(); </script>
+> 示例: `<script>   window.ga_tid = 'UA-104605102-3';   (function() {     var dga = document.createElement("script");     dga.src = "https://rmt.dogedoge.com/fetch/public/ga.js";     var s = document.getElementsByTagName("script")[0];     s.parentNode.insertBefore(dga, s);   })(); </script>`
+
 {% note warning, 部分主题并没有对这个选项做兼容,所以我个人推荐使用renexmoe主题 %}
 
 - passfile
+
 保存密码的文件名…不是密码！
 更不是全站加密！
 譬如罢,你把这个设置成`.password`,然后去加密某个目录,OM就会在你的OneDrive里创建一个叫`.password`的文件,里面是这个文件夹的密码。
@@ -146,6 +154,7 @@ updated: 2021-05-02 17:21:00
 而且为了兼容性,我个人建议设置为`.password`就好,因为诸如GDIndex,GoIndex之类的目录程序都把这个作为密码文件名。
 
 - theme
+
 选renexmoe.html！
 
 186记得给我广告费。
@@ -153,11 +162,13 @@ updated: 2021-05-02 17:21:00
 ### 盘内变量
 
 - domain_path
+
 不同的域名将不同的目录作为根目录…概念有点绕…
 如果是Heroku部署且没绑卡,这个变量毫无作用…其他云函数平台可以
 > 示例: example.com:/默认/|bangumi.example.com:/番剧/|movie.example.com:/电影/|nsfw.example.com:/小姐姐/
 
 - downloadencrypt
+
 简单说,就是是否可以无需密码下载加密目录里的文件。
 
 比如你有个加密文件夹"NSFW",里面有个文件叫186526.mkv。
@@ -165,12 +176,14 @@ updated: 2021-05-02 17:21:00
 近似于*nix系统中对目录rwx与-wx的区别
 
 - guestup_path
+
 把某个文件夹设置成游客上传,文件夹内容不会展示,游客上传文件后可以拿到链接。
 顺带一提文件会被强制重命名为文件的md5
 {% note warning, 不要想着提建议说删掉自动重命名,我2年前就提过多次,屑逸笙就是不改（叹气 %}
 > 示例: /NSFW/186526/
 
 - public_path
+
 设置某个目录为全站根目录。
 > 示例:/NSFW
 
