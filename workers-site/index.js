@@ -62,7 +62,7 @@ async function handleEvent(event) {
 
         // Server Push 样式文件
         if (response.headers.get("Content-Type").includes('text/html')) {
-            response.headers.append('Link', '</css/main.css>; rel=preload; as=style');
+            response.headers.append('Link', '</css/style.css>; rel=preload; as=style');
         }
 
         return response;
