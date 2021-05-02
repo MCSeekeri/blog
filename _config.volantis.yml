@@ -3,7 +3,7 @@
 navbar:
   visiable: always # always, auto
   logo: # choose [img] or [icon + title]
-    img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@latest/img/custom/MCSeekeri.jpg
+    img: /favicon.ico
     icon:
     title:
   menu:
@@ -106,7 +106,7 @@ article:
         enable: true
         permalink: '本文永久链接是：'
         content:
-          - '博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议'
+          - '本文遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议公开'
           - permalink
       # ----------------
       # 打赏组件 (for layout: post)
@@ -175,18 +175,18 @@ comments:
   # https://valine.js.org/
 
 minivaline:
-    placeholder: 欢迎评论，会自动显示Gravatar头像  # 全局评论占位提示
+    js: https://cdn.jsdelivr.net/npm/minivaline@5.x
+    placeholder: 欢迎在此留下评论  # 全局评论占位提示
     # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el path placeholder] 选项）  
     # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
     # 下面是一个例子：
     serverURL: https://mccomments.vercel.app
     mode: xCss
-    md: true
-    RecordIP: false
     visitor: false
     enableFlag: true
     enableUA: true
     avatarD: mp
+    avatarUrl: https://gravatar.loli.net/avatar/
     emoticonUrl:
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/bilibilitv
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Coolapk
@@ -218,7 +218,7 @@ sidebar:
     # ---------------------------------------
     # blogger info widget
     blogger:
-      avatar: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn/img/custom/MCSeekeri.jpg
+      avatar: /favicon.ico
       title: MC探索者i的博客
       subtitle: 一般普通技术爱好者的日常
       jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
@@ -316,7 +316,7 @@ site_footer:
   # site source
   source: https://github.com/volantis-x/volantis-docs/
   # analytics using leancloud
-  analytics: >
+  analytics: 
     <span id="lc-sv">本站总访问量为 <span id='number'><i class="fal fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span>
     <span id="lc-uv">访客数为 <span id='number'><i class="fal fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span>
   # site copyright
@@ -401,6 +401,7 @@ plugins:
 
   pjax:
     enable: true
+    cover: true          # 封面是否pjax处理 false：每次切换页面封面都重载，适合封面较少的情况 true：封面经过Pjax处理，适合封面较多的情况
     timeout: 5000        # The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
     cacheBust: false     # When set to true, Pjax appends a timestamp  to skip the browser cache.
     animation: nprogress # nprogress, circle

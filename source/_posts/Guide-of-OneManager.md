@@ -106,12 +106,7 @@ date: 2020-08-19 20:48:40
 "自定义域名"那里新建域名。
 ![](https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/posts/Guide-of-OneManager/SCF-Domain.png)
 如果需要SSL,可以用Cloudflare的源服务器证书,也可以去腾讯申请个TrustAsia证书。
-### 华为函数工作流部署
-### 阿里函数计算部署
-### 百度云函数计算部署
-我回头再写好这些咕咕咕。
+
 ## 程序安装
 ## 配置详解
 ## 特殊玩法
-打算写ukuq的直链代理,Heroku的域名反代和全站代理,Valine的评论区啥的。
-我会写完这些的,迟早会的。

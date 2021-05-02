@@ -100,14 +100,6 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: volantis
-plugin:
-   - hexo-generator-feed
-encrypt:
-  enable: true
-  abstract: 本文已被加密,输入密码后方可阅读。
-  message: 在此处填写密码。
-  wrong_pass_message: 密码错误,拒绝访问。
-  wrong_hash_message: 密码正确,文章内容校验错误,本文内容可能已被篡改。
 
 hexo_submit_urls_to_search_engine:
   submit_condition: count #链接被提交的条件，可选值：count | period 现仅支持count
@@ -123,6 +115,7 @@ hexo_submit_urls_to_search_engine:
   bing_token: 0
   google_host: https://blog.mcseekeri.top 
   google_key_file: push.json
+
 feed:
   type: atom
   path: atom.xml
@@ -130,8 +123,13 @@ feed:
 
 # 屑MC瞎鸡儿自定义区域
 import:
+    meta:
+      - <meta name="referrer" content="no-referrer" />
     link:
+      - <link rel="preconnect" href="https://cdn.jsdelivr.net">
+      - <link rel="preconnect" href="https://fbf2sre1.api.lncldglobal.com">
       - <link rel="preconnect" href="https://fonts.gstatic.com">
+      - <link rel="preconnect" href="https://fonts.googleapis.com">
       - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
 nofollow:
