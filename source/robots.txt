@@ -7,3 +7,4 @@ Allow: /about/
 Allow: /talk/
 
 Sitemap: https://mcseekeri.top/sitemap.xml
+Sitemap: https://mcseekeri.top/baidusitemap.xml
