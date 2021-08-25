@@ -6,7 +6,7 @@
 title: MC探索者i的博客
 subtitle: ''
 description: 这里是技术爱好者MC探索者i的博客！
-keywords: 'MC探索者i,博客,动漫,命运石之门,Blog'
+keywords: 'MC探索者i,博客,动漫,Blog'
 author: MCSeekeri
 language: zh-CN
 timezone: Asia/Shanghai
@@ -123,13 +123,9 @@ feed:
 
 # 屑MC瞎鸡儿自定义区域
 import:
-    meta:
-      - <meta name="referrer" content="no-referrer" />
     link:
-      - <link rel="preconnect" href="https://cdn.jsdelivr.net">
       - <link rel="preconnect" href="https://fbf2sre1.api.lncldglobal.com">
       - <link rel="preconnect" href="https://fonts.gstatic.com">
-      - <link rel="preconnect" href="https://fonts.googleapis.com">
       - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
 nofollow:
@@ -138,6 +134,7 @@ nofollow:
   exclude:
     - 'sciadv.mcseekeri.top'
     - 'mcseekeri.top'
+    - 'blog.mcseekeri.top'
   
 abbrlink:
   alg: crc32      #support crc16(default) and crc32

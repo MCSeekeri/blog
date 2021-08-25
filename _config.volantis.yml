@@ -43,9 +43,9 @@ navbar:
         - name: 可用性检测
           icon: fal fa-telescope
           url: https://status.mcseekeri.top 
-        - name: 开往
-          icon: fal fa-map-signs
-          url: https://travellings.now.sh/
+    - name: 开往
+      icon: fal fa-map-signs
+      url: https://travellings.link/
   search: 要搜索什么呢...   # Search bar placeholder
 ############################### Navigation Bar ############################### > end
 
@@ -56,31 +56,28 @@ cover:
   title: ''
   search: 要搜索什么呢... # search bar placeholder
   features:
-    - name: 主页
-      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/file-manager.svg
-      url: /
     - name: 归档
-      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/irix.svg
-      url: archives/
+      icon: fal fa-archive
+      url: /archives/
     - name: 分类
-      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/web-browser.svg
-      url: categories/
+      icon: fal fa-file-alt
+      url: /categories/
     - name: 留言
-      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/notification.svg
-      url: comment/
+      icon: fal fa-comment
+      url: /comment/
     - name: 关于
-      img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/cs-user.svg
-      url: about/
-    #- name: GitHub
-    #  img: https://cdn.jsdelivr.net/gh/MCSeekeri/cdn@master/img/logo/github-desktop.svg
-    #  url: https://github.com/MCSeekeri
+      icon: fal fa-user-circle
+      url: /about/
+    - name: GitHub
+      icon: fab fa-github
+      url: https://github.com/MCSeekeri
 ############################### Cover ############################### > end
 ############################### Article Layout ############################### > start
 # 文章布局
 article:
   # 文章列表页面的文章卡片布局方案
     body:
-      top_meta: [author, category, date, counter]
+      top_meta: [author, category, date, wordcount, counter]
     footer_widget:
       references:
         title: 参考资料
@@ -125,7 +122,7 @@ article:
       author:
         avatar: /favicon.ico
         name: MCSeekeri
-        url: about/
+        url: /about/
       # 文章创建日期
       date:
         icon: fal fa-calendar-alt
@@ -170,42 +167,33 @@ article:
 ############################### Comments ############################### > start
 comments:
   title: <i class='fal fa-comments'></i> 评论
-  service: minivaline # valine, minivaline, disqus, gitalk, vssue, livere, isso, hashover
+  service: waline # valine, minivaline, disqus, gitalk, vssue, livere, isso, hashover
   # Valine
   # https://valine.js.org/
 
-minivaline:
-    js: https://cdn.jsdelivr.net/npm/minivaline@5.x
-    placeholder: 欢迎在此留下评论  # 全局评论占位提示
-    # 更多选项 https://minivaline.js.org/docs/cn/#/Options 按照yml格式继续填写即可 （除了 [el path placeholder] 选项）  
-    # emoticonUrl 等列表选项 可参考 https://github.com/MiniValine/hexo-next-minivaline
-    # 下面是一个例子：
-    serverURL: https://mccomments.vercel.app
-    mode: xCss
-    visitor: false
-    enableFlag: true
-    enableUA: true
-    avatarD: mp
-    avatarUrl: https://gravatar.loli.net/avatar/
-    emoticonUrl:
-    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/bilibilitv
-    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Coolapk
-    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Heybox
-    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Menhera-chan
+  waline:
+    js: https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js
+    path: # 全局评论地址 目前设置全局评论地址后visitor失效,这是waline的问题
+    placeholder: 欢迎在此发表您对本文的看法,本站评论只需填写昵称和接受回复用的邮箱  # 评论占位提示
+    imageHosting: https://7bu.top/api/upload # 图床api（默认使用去不图床）
+    # 其他配置项按照yml格式继续填写即可 除了 [el path placeholder uploadImage] 选项
+    meta: [nick,mail,link] # waline comment header info
+    requiredFields: [nick,mail]
+    serverURL: https://comments.mcseekeri.top # Waline 的服务端地址（必填） 测试用地址: https://waline-ruddy.vercel.app
+    avatar: mp # gravatar style https://waline.js.org/client/basic.html#avatar
+    avatarCDN: https://sdn.geekzu.org/avatar/
+    pageSize: 10 # 评论每页显示数量
+    lang: zh-CN
+    visitor: true
+    emoji:
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/QQ
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Tieba
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Tieba-New
     - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/weibo
-    tagMeta:
-      - Master
-      - Admin
-      - Guest
-    master:
-      - 2fe1b9f7d79c288f4d7b8bc15b0227a4
-    friends:
-      - 19f2f82559c52e9d5ed1c7eba89b55b0
-      - 0ec123bd8833f0bfda32879a8c13b074
-   
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Coolapk
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Heybox
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/bilibili2233/
+    - https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/Menhera-chan
 
 ############################### Sidebar ############################### > start
 sidebar:
@@ -220,13 +208,13 @@ sidebar:
     blogger:
       avatar: /favicon.ico
       title: MC探索者i的博客
-      subtitle: 一般普通技术爱好者的日常
+      subtitle: 一般普通技术爱好者
       jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
       social:
         - icon: fal fa-rss
           url: /atom.xml
         - icon: fal fa-envelope
-          url: mailto:mctsz@outlook.com
+          url: mailto:hiyajo.maho@outlook.com
         - icon: fal fa-github
           url: https://github.com/MCSeekeri
         #- icon: fal fa-headphones-alt
@@ -358,7 +346,7 @@ plugins:
 
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
-    enable: true
+    enable: #true
     js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js
     distance: 32px
     duration: 800 # ms
@@ -520,7 +508,7 @@ search:
 
 ############################### Custom css ############################### > start
 custom_css:
-  toc_smooth: true # TOC 目录平滑滚动效果
+  toc_smooth: false # TOC 目录平滑滚动效果
   cursor:
     enable: true
     text: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/text.cur
@@ -573,9 +561,9 @@ seo:
   use_excerpt_as_description: true
   robots:
     home_first_page: index,follow
-    home_other_pages: noindex,follow
-    archive: noindex,follow
-    category: noindex,follow
-    tag: noindex,follow
+    home_other_pages: index,follow
+    archive: index,follow
+    category: index,follow
+    tag: index,follow
     # robots can be written in front-matter
 ############################### SEO ############################### > end
