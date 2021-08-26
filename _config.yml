@@ -125,9 +125,9 @@ feed:
 import:
     link:
       - <link rel="preconnect" href="https://fbf2sre1.api.lncldglobal.com">
-      - <link rel="preconnect" href="https://fonts.gstatic.com">
-      - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
+      - <link rel="preconnect" href="https://fonts.googleapis.com">
+      - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      - <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
 nofollow:
   enable: true
   field: site
