@@ -1,99 +1,127 @@
 <%- partial('global') %>
 <script>
   <% if (theme.plugins.fontawesome) { %>
-  loadCSS("<%- theme.plugins.fontawesome %>", window.volantis.loadcss);
+  volantis.css("<%- theme.plugins.fontawesome %>");
   <% } %>
   <% if (theme.plugins.fontawesome_animation.enable) { %>
-  loadCSS("<%- theme.plugins.fontawesome_animation.css %>", window.volantis.loadcss);
+  volantis.css("<%- theme.plugins.fontawesome_animation.css %>");
   <% } %>
   <% if (theme.plugins.nodewaves.enable) { %>
-  loadCSS("<%- theme.plugins.nodewaves.css %>", window.volantis.loadcss);
+  volantis.css("<%- theme.plugins.nodewaves.css %>");
   <% } %>
   <% if ((theme.plugins.highlightjs.enable == true)&&(theme.plugins.highlightjs.css)) { %>
-  loadCSS("<%- theme.plugins.highlightjs.css %>", window.volantis.loadcss);
+  volantis.css("<%- theme.plugins.highlightjs.css %>");
   <% } %>
 </script>
-<!-- required -->
-<%- js(theme.plugins.jquery) %>
-<%- partial('../../_third-party/fancybox/script') %>
 
-<!-- internal -->
-<%- partial('cover') %>
-<% if (theme.rightmenu.enable == true) { %>
-  <%- partial('../rightmenu') %>
+<!-- required -->
+<% if (theme.plugins.globalJquery) { %>
+  <%- js(theme.plugins.jquery) %>
 <% } %>
 
-<%- partial('issues') %>
+<!-- internal -->
+
+<% if (theme.plugins.message && theme.plugins.message.enable) { %>
+  <%- partial('../../_plugins/message/script') %>
+<% } %>
+
+<% if (theme.rightmenu.enable) { %>
+  <%- partial('../../_plugins/rightmenu/layout') %>
+<% } %>
+
+<!-- rightmenu要在darkmode之前（ToggleButton） darkmode要在comments之前（volantis.dark.push）-->
+<% if (theme.plugins.darkmode.enable) { %>
+  <%- partial('../../_plugins/darkmode/script') %>
+<% } %>
+
+<% if (theme.plugins.sitesjs.enable || theme.plugins.friendsjs.enable || theme.plugins.contributorsjs.enable) { %>
+<%- partial('../../_plugins/github-api/script') %>
+<% } %>
 
 <% if (theme.plugins.lazyload && theme.plugins.lazyload.enable) { %>
-  <%- partial('../../_third-party/lazyload/script') %>
+  <%- partial('../../_plugins/lazyload/script') %>
 <% } %>
 
 <% if (theme.plugins.preload.enable && theme.plugins.preload.service) { %>
-  <%- partial('../../_third-party/preload/script') %>
-<% } %>
-
-<% if (theme.plugins.clipboard.enable && (theme.custom_css.body.highlight.copy_btn == true)) { %>
-  <%- partial('../../_third-party/clipboard/script') %>
+  <%- partial('../../_plugins/preload/script') %>
 <% } %>
 
 <% if (theme.plugins.scrollreveal.enable && theme.plugins.scrollreveal.js) { %>
-   <%- partial('../../_third-party/scrollreveal/script') %>
+   <%- partial('../../_plugins/scrollreveal/script') %>
 <% } %>
 
 <% if (theme.plugins.aplayer && theme.plugins.aplayer.enable && theme.plugins.aplayer.js) { %>
-  <%- partial('../../_third-party/aplayer/script') %>
+  <%- partial('../../_plugins/aplayer/script') %>
 <% } %>
 
 <% if (theme.comments.service && theme.comments.service.length > 0) { %>
-  <%- partial('../../_third-party/comments/' + theme.comments.service + '/script') %>
+  <%- partial('../../_plugins/comments/' + theme.comments.service + '/script') %>
 <% } %>
 
 <% if (theme.analytics.busuanzi) { %>
   <script defer src="<%- theme.analytics.busuanzi %>" data-pjax></script>
 <% } %>
 
-<% if (theme.use_cdn && theme.info.cdn && theme.info.cdn.js) { %>
-  <%- js(theme.info.cdn.js) %>
-<% } else if(theme.use_cdn) { %>
-  <%- js(['https://cdn.jsdelivr.net/npm/hexo-theme-volantis@'+theme.info.theme_version+'/source/js/app.min.js']) %>
-<% } else { %>
-  <%- js(['js/app.js']) %>
-<% } %>
+<%- js(theme.cdn.map.js.app) %>
 
 <!-- optional -->
 <% if (theme.search && theme.search.enable) { %>
-  <%- partial('search') %>
+  <%- partial('../../_plugins/search/script') %>
 <% } %>
 
-
 <% if (theme.plugins.nodewaves.enable) { %>
-  <%- partial('../../_third-party/nodewaves/script') %>
+  <%- partial('../../_plugins/nodewaves/script') %>
 <% } %>
 
 <% if (theme.plugins.comment_typing.enable) { %>
   <%- js(theme.plugins.comment_typing.js) %>
 <% } %>
 
-<% if (theme.plugins.highlightjs.enable) { %>
-  <%- partial('../../_third-party/highlightjs/script') %>
+<% if (theme.plugins.code_highlight=="highlightjs") { %>
+  <%- partial('../../_plugins/highlightjs/script') %>
+<% } %>
+
+<% if (theme.plugins.code_highlight=="prismjs") { %>
+  <%- partial('../../_plugins/prismjs/script') %>
 <% } %>
 
 <% if (theme.analytics && theme.analytics.leancloud && theme.analytics.leancloud.app_id) { %>
-  <%- partial('counter') %>
+  <%- partial('../../_plugins/analytics/LCCounter') %>
 <% } %>
 
-<% if (theme.plugins.darkmodejs.enable) { %>
-  <%- partial('darkmode') %>
+<% if (config.google_analytics_key || config.baidu_analytics_key || config.tencent_aegis_id) { %>
+  <%- partial('../../_plugins/analytics/script') %>
 <% } %>
 
-<%- partial('../../_third-party/analytics/script') %>
+<% if (theme.plugins.tidio.enable) { %>
+  <%- partial('../../_plugins/tidio/script') %>
+<% } %>
 
-<%- partial('../../_third-party/tidio/script') %>
+<% if (theme.plugins.parallax.enable) { %>
+  <%- partial('../../_plugins/parallax/script') %>
+<% } %>
+
+<!-- pjax 标签必须存在于所有页面 否则 pjax error -->
+<pjax>
+<% if (page.plugins) { %>
+<%- partial('../../_plugins/page_plugins/index') %>
+<% } %>
+
+<% if (page.snackbar && site.data.notification && (page.snackbar in site.data.notification)) { %> 
+  <%- partial('../../_plugins/snackbar/script') %>
+<% } %>
+</pjax>
 
 <%- partial('toc') %>
+
+<%- partial('content-visibility-scroll-fix') %>
+
+<% if (theme.structured_data && theme.structured_data.enable) { %>
+  <%- structured_data() %>
+<% } %>
 
 <!-- more -->
 <% if (config.import && config.import.script) { %>
   <%- partial('import') %>
 <% } %>
+

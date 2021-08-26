@@ -1,23 +1,9 @@
 <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/<%- theme.info.theme_version %>'>
+  <%- meta_generator() %>
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <% if (page.robots) { %>
-    <meta name="robots" content="<%- page.robots %>">
-  <% } else if (theme.seo && theme.seo.robots) { %>
-    <% if (is_home()) { %>
-      <% if (page.prev == 0) { %>
-        <meta name="robots" content="<%- theme.seo.robots.home_first_page %>">
-      <% } else { %>
-        <meta name="robots" content="<%- theme.seo.robots.home_other_pages %>">
-      <% } %>
-    <% } else if (is_archive()) { %>
-      <meta name="robots" content="<%- theme.seo.robots.archive %>">
-    <% } else if (is_category()) { %>
-      <meta name="robots" content="<%- theme.seo.robots.category %>">
-    <% } else if (is_tag()) { %>
-      <meta name="robots" content="<%- theme.seo.robots.tag %>">
-    <% } %>
-  <% } %>
+  <%- generate_seo(theme, page) %>
+  <%- autoCanonical(config, page) %>
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -27,103 +13,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="HandheldFriendly" content="True" >
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <% if (theme.use_cdn && theme.info.cdn && theme.info.cdn.css.first) { %>
-  <link rel="preload" href="<%- theme.info.cdn.css.first %>" as="style">
-  <% } else { %>
-  <link rel="preload" href="<%- url_for("/css/first.css") %>" as="style">
-  <% } %>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta content="<%=config.title%>" name="application-name">
+  <meta content="<%=config.title%>" name="apple-mobile-web-app-title">
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <link rel="preload" href="<%- theme.cdn.map.css.style %>" as="style">
   <!-- 页面元数据 -->
-  <%
-    var title = page.seo_title || page.title;
-    var keywords = page.keywords || '';
-    var description = page.description || '';
-    if (is_archive()) {
-      title = __('navbar.archive');
-      if (is_month()) {
-        title += __('symbol.colon') + page.year + '/' + page.month;
-      } else if (is_year()) {
-        title += __('symbol.colon') + page.year;
-      }
-    } else if (is_category()) {
-      title = __('navbar.category') + __('symbol.colon') + page.category;
-    } else if (is_tag()) {
-      title = __('navbar.tag') + __('symbol.colon') + page.tag;
-    } else if (is_home() && page.prev == 0) {
-      keywords = config.keywords || '';
-      description = config.description || '';
-    } else {
-      if ((page.layout == 'docs') && page.group && (page.group in theme.sidebar.widget_library)) {
-        let widget = theme.sidebar.widget_library[page.group];
-        if ((widget.class == 'group') && widget.seo_title) {
-          title = widget.seo_title + ": " + title;
-        }
-      }
-    }
-    if (theme.seo && theme.seo.use_tags_as_keywords) {
-      if (!keywords && page.tags && page.tags.length > 0) {
-        let tags = page.tags.map(function(t){return t.name}).join(',');
-        if (tags.length > 0) {
-          keywords += tags;
-        }
-      }
-    }
-    if (theme.seo && theme.seo.use_excerpt_as_description) {
-      if (page.description == undefined) {
-        if (page.excerpt) {
-          description = truncate(strip_html(page.excerpt), {length: 160});
-        }
-      }
-    }
-  %>
-  <title><% if (title) { %><%= title %> - <% } %><%= config.title %></title>
-  <% if (keywords){ %>
-    <meta name="keywords" content="<%- keywords %>">
-  <% } %>
-
-  <% if (description){ %>
-    <meta name="description" content="<%- description %>">
-  <% } %>
-
+  <%- generate_title(config, theme, page) %>
+  <%- generate_keywords(config, theme, page) %>
+  <%- open_graph(theme.open_graph) %>
   <!-- feed -->
-  <% if (config.feed && config.feed.path){ %>
+  <%_ if (config.feed && config.feed.path){ _%>
     <%- feed_tag(config.feed.path, {title: config.title}) %>
-  <% } %>
-
+  <%_ } _%>
   <!-- import meta -->
-  <% if (config.import && config.import.meta){ %>
-    <% (config.import.meta||[]).forEach(function(item){ %>
+  <%_ if (config.import && config.import.meta){ _%>
+    <%_ (config.import.meta||[]).forEach(function(item){ _%>
       <%- item %>
-    <% }) %>
-  <% } %>
-
+    <%_ }) _%>
+  <%_ } _%>
   <!-- link -->
-  <% if (config.favicon) { %>
+  <%_ if (config.favicon) { _%>
     <link rel="shortcut icon" type='image/x-icon' href="<%- url_for(config.favicon) %>">
-  <% } %>
-
+  <%_ } _%>
   <!-- import link -->
-  <% if (config.import && config.import.link){ %>
-  <% (config.import.link||[]).forEach(function(item){ %>
-  <%- item %><% }) %>
-  <% } %>
-
-  <% if (theme.use_cdn && theme.info.cdn && theme.info.cdn.css.first) { %>
-    <%- css(theme.info.cdn.css.first) %>
-  <% } else { %>
-    <%- css('/css/first.css') %>
-  <% } %>
-
-  <% if (theme.use_cdn && theme.info.cdn && theme.info.cdn.css.style) { %>
-  <link rel="stylesheet" href="<%- theme.info.cdn.css.style %>" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="<%- theme.info.cdn.css.style %>"></noscript>
-  <% } else { %>
-  <link rel="stylesheet" href="<%- url_for("/css/style.css") %>" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="<%- url_for("/css/style.css") %>"></noscript>
-  <% } %>
-
-  <script id="loadcss"></script>
-
-  <%- partial('../_third-party/end-of-support/script') %>
+  <%_ if (config.import && config.import.link){ _%>
+    <%_ (config.import.link||[]).forEach(function(item){ _%>
+      <%- item %>
+    <%_ }) _%>
+  <%_ } _%>
+  <style>
+    /* 首屏样式 */
+    <%- FirstCSS() %>
+  </style>
+  <%_ if (theme.plugins.tag_plugin_load_on_demand.enable) { _%>
+  <pjax>
+    <style>
+      /* 按需加载的标签插件样式 */
+      <%- TagCSS(page) %>
+    </style>
+  </pjax>
+  <%_ } _%>
+  <link rel="stylesheet" href="<%- theme.cdn.map.css.style %>" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="<%- theme.cdn.map.css.style %>"></noscript>
+  <%_ if (theme.plugins.darkmode.enable) { _%>
+    <script>
+      var userColorScheme=localStorage.getItem("color-scheme")
+      if(userColorScheme){
+        document.documentElement.setAttribute("color-scheme", userColorScheme);
+      }
+    </script>
+  <%_ } _%>
+  <%- partial('../_plugins/end-of-support/script') %>
+  <!-- Custom Files head begin-->
+  <%- volantis_inject('head') %>
+  <!-- Custom Files head end-->
 </head>

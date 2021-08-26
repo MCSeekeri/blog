@@ -19,7 +19,7 @@ if (post.bottom_meta == false) {
   <% } %>
   <div class="article-meta" id="top">
     <% if (post.music && post.music.enable != false) { %>
-      <%- partial('../_third-party/aplayer/layout', {post: post, where: 'meta'}) %>
+      <%- partial('../_plugins/aplayer/layout', {post: post, where: 'meta'}) %>
     <% } %>
     <% if (post.thumbnail && post.thumbnail.length){ %>
       <a title='<%- post.title %>' href='<%- url_for(post.link || post.path) %>'>
@@ -36,6 +36,9 @@ if (post.bottom_meta == false) {
             <%- partial('../_meta/' + meta, {post: post}) %>
           <% } %>
         <% }) %>
+        <!-- Custom Files topMeta begin-->
+        <%- volantis_inject('topMeta') %>
+        <!-- Custom Files topMeta end-->
       </div>
     <% } %>
   </div>
@@ -48,5 +51,8 @@ if (post.bottom_meta == false) {
         <% } %>
       <% }) %>
     </div>
+    <!-- Custom Files bottomMeta begin -->
+    <%- volantis_inject('bottomMeta') %>
+    <!-- Custom Files bottomMeta end -->
   </div>
 <% } %>

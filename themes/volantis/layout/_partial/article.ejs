@@ -1,11 +1,6 @@
 <article class="article post white-box reveal md <%- theme.custom_css.body.effect.join(' ') %> article-type-<%= post.layout %>" id="<%= post.layout %>" itemscope itemprop="blogPost">
   <%- partial('meta', {post: post, position: 'top'}) %>
-  <% if (page.layout == 'artitalk') { %>
-    <div id="artitalk_main"></div>
-  <% } %>
-  <% if (page.layout == 'bb') { %>
-    <div id="bbtalk"></div>
-  <% } %>
+  <div id="page-plugins-helper"></div>
   <%- post.content %>
   <% if (page.link) { %>
     <div class='div-ori-link'>
@@ -121,12 +116,15 @@
       <% } %>
     </div>
   <% } %>
+  <!-- Custom Files postEnd begin-->
+  <%- volantis_inject('postEnd') %>
+  <!-- Custom Files postEnd end-->
 </article>
 
 <% if (page.comments == undefined || page.comments != false) { %>
-  <%- partial('../_third-party/comments/index') %>
+  <%- partial('../_plugins/comments/index') %>
 <% } %>
 
 <% if (page.mathjax) { %>
-  <%- partial('../_third-party/math/mathjax/script') %>
+  <%- partial('../_plugins/math/mathjax/script') %>
 <% } %>

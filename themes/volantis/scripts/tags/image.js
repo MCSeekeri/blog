@@ -12,7 +12,12 @@
 // {% image url, alt=haha, width=400px %}
 // {% image url, alt=haha, width=400px, bg=#eee %}
 hexo.extend.tag.register('image', function(args) {
-  args = args.join(' ').split(', ');
+  if(/::/g.test(args)){
+    args = args.join(' ').split('::');
+  }
+  else{
+    args = args.join(' ').split(',');
+  }
   const url = args[0].trim();
   let alt = '';
   let bg = '';
@@ -36,6 +41,8 @@ hexo.extend.tag.register('image', function(args) {
     img += '<img class="img" src="' + url + '"';
     if (alt.length > 0) {
       img += ' alt="' + alt + '"';
+    } else {
+      img += ' alt="image"';
     }
     if (style.length > 0) {
       img += ' style="' + style + '"';
@@ -68,7 +75,12 @@ hexo.extend.tag.register('image', function(args) {
 // {% inlineimage url %}
 // {% inlineimage url, height=22px %}
 hexo.extend.tag.register('inlineimage', function(args) {
-  args = args.join(' ').split(', ');
+  if(/::/g.test(args)){
+    args = args.join(' ').split('::');
+  }
+  else{
+    args = args.join(' ').split(',');
+  }
   const url = args[0].trim();
   let ret = '';
   ret += '<img no-lazy class="inline" src="' + url + '"';

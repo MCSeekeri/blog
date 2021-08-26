@@ -1,5 +1,43 @@
 
+
+default:
+  avatar: https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/avatar/round/3442075.svg
+  link: https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/link/8f277b4ee0ecd.svg
+  cover: https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/cover/76b86c0226ffd.svg
+  image: https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg
+
+
+#
+# 上面的是 v5 新版通用配置，可兼容 Stellar 主题，请放心使用
+#
+# xxxxxxxx
+#
+# 下面的是 v4 旧版配置，将逐步迁移至通用配置中
+#
+############################### Volantis ###############################
+info:
+  theme_name: Volantis # This is theme's name.
+  theme_version: '5.0.0.alpha.1' # This is theme's version.
+  theme_docs: https://volantis.js.org/ # This is theme's URL.
+  theme_repo: https://github.com/volantis-x/hexo-theme-volantis
+
+############################### CDN ###############################
+# 本地静态文件使用jsdelivr的min版本加速 https://www.jsdelivr.com/features
+# 默认使用 https://cdn.jsdelivr.net/npm/hexo-theme-volantis@<%- theme.info.theme_version %>/source/js/*.min.js 的CDN压缩版本(min.js)，注意版本号对应关系！！可以通过修改以下配置项覆盖
+# 开发者注意 cdn.enable 设置为 false
+cdn:
+  enable: false
+  prefix: # CDN 前缀，为空使用默认值，链接最后不加 "/",例如： https://cdn.jsdelivr.net/gh/volantis-x/volantis-x.github.io@gh-page 填写最后编译生成的源码CDN地址前缀，此路径下应该含有/js与/css目录,该配置默认值是："https://cdn.jsdelivr.net/npm/hexo-theme-volantis@"+ theme.info.theme_version +"/source"
+  # 以下配置可以覆盖 cdn.prefix,配置项的值可以为空，但是要使用CDN必须依据路径填写配置项的键
+  set:
+    js:
+      app: #/js/app.js
+    css:
+      style: #/css/style.css # (异步加载样式)
+########################################################################
+
 ############################### Navigation Bar ############################### > start
+# 注意事项：建议规范全站路径 URL 最后带一个 "/" 例如 "about/"
 navbar:
   visiable: always # always, auto
   logo: # choose [img] or [icon + title]
@@ -52,8 +90,17 @@ navbar:
 
 ############################### Cover ############################### > start
 cover:
-  height_scheme: half # full, half
+  height_scheme: full # full, half
+  layout_scheme: dock # blank (留白), search (搜索), dock (坞), featured (精选), focus (焦点)
+  display:
+    home: true
+    archive: true
+    others: false # can be written in front-matter 'cover: true'
+  background: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
+  # background: https://bing.ioliu.cn/v1/rand?w=1920&h=1200
+  logo: # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-Cover@3x.png
   title: ''
+  subtitle: ''
   search: 要搜索什么呢... # search bar placeholder
   features:
     - name: 归档
@@ -72,6 +119,12 @@ cover:
       icon: fab fa-github
       url: https://github.com/MCSeekeri
 ############################### Cover ############################### > end
+
+pages:
+  # 友链页面配置
+  friends:
+    layout_scheme: traditional # simple: 简单布局, traditional: 传统布局
+
 ############################### Article Layout ############################### > start
 # 文章布局
 article:
@@ -197,6 +250,7 @@ comments:
 
 ############################### Sidebar ############################### > start
 sidebar:
+  position: right # left right
   # 主页、分类、归档等独立页面
   for_page: [blogger, category, tagcloud, webinfo]
   # layout: docs/post 这类文章页面
@@ -249,7 +303,17 @@ sidebar:
       color: true
       start_color: '#999'
       end_color: '#555'
-
+    # ---------------------------------------
+    # qrcode widget
+    qrcode:
+      class: qrcode
+      display: [desktop, mobile] # [desktop, mobile]
+      height: 64px  # Automatic height if not set
+      images:
+        - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+        - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+    # ---------------------------------------
+    # webinfo widget
     webinfo:
       class: webinfo
       display: [desktop]
@@ -266,7 +330,15 @@ sidebar:
           data: '2019/07/28'    # 填写建站日期
           text: '已运行时间：'
           unit: '天'
-        
+    # ---------------------------------------
+    # lastupdate widget
+    lastupdate:
+      class: lastupdate
+      display: [desktop, mobile]
+      header:
+        icon: fas fa-clock WISTERIA
+        title: 最近更新
+  
 ############################### Sidebar ############################### > end
 
 
@@ -317,17 +389,33 @@ site_footer:
 plugins:
   ################ required plugins ################
   # jquery
+  globalJquery: false # 全局引入 jquery
   jquery: https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js
-  # fontawesome
-  fontawesome: https://cdn.jsdelivr.net/gh/volantis-x/cdn-fontawesome-pro@5.13.1/css/all.min.css
+  # fontawesome Pro 版本：https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css
+  fontawesome: https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css
   ################ optional plugins ################
+  # issues api
+  sitesjs:
+    enable: false
+  friendsjs:
+    enable: false
+  contributorsjs:
+    enable: true
 
   ######## Plugins to improve loading speed:
 
   # 预加载
-  
+  preload:
+    enable: true
+    service: flying_pages # instant_page, flying_pages
+    instant_page: https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2/js/instant_page.js
+    flying_pages: https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js
+
   # 图片懒加载
   # https://www.npmjs.com/package/vanilla-lazyload
+  # tips: 
+  # 这里是主题自带的图片懒加载, 实现方案位于 /scripts/filters/z-lazyload ; srcset 属性的的优先级比 src 属性要高, 注意 srcset 存放了懒加载占位图,  src 存放了原图
+  # 在支持 srcset 的浏览器或者 RSS 阅读器(还会有人使用老旧的阅读器?)上会优先读取 srcset 加载的图片(懒加载占位图), 对于 RSS 中图片丢失变成懒加载占位图的问题, 建议 自行使用脚本移除 srcset 属性 或 关闭图片懒加载 或 在 RSS 中插入 vanilla-lazyload
   lazyload:
     enable: true
     js: https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js
@@ -336,27 +424,40 @@ plugins:
     blurIn: true # 模糊加载效果 （loadingImg为空时有效）
 
   ######## Plugins to optimize the experience:
+  # 代码高亮
+  code_highlight: highlightjs # highlightjs or prismjs
 
   # highlight.js
   highlightjs:
-    enable: true # Please set hexo.config.highlight.enable = false !!!
-    js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js
-    css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css
+    copy_code: true
+    # 如果开启 js, hexo.config.highlight.enable 需要设置为 false
+    js: #https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/highlight.min.js # Please set hexo.config.highlight.enable = false !!!
+    css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/styles/default.min.css
     # more: https://www.jsdelivr.com/package/npm/highlight.js?path=styles
+
+  # prismjs
+  # https://prismjs.com/
+  # https://hexo.io/zh-cn/docs/syntax-highlight#PrismJS
+  prismjs:
+    copy_code: true
+    # Please set hexo.config.highlight.enable = false !!! set hexo.config.prismjs.enable = true !!!
+    js:
+      - https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js
+      - https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
+      - https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js
+    css:
+      - https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dark.css
+      - https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css
+
 
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
     enable: #true
-    js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js
+    js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     distance: 32px
     duration: 800 # ms
     interval: 20 # ms
     scale: 1 # 0.1~1
-
-  # Codeblock Copy Button
-  clipboard:
-    enable: true
-    js: https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
 
   ######## Plugins for SEO:
 
@@ -364,10 +465,26 @@ plugins:
   wordcount:
     enable: true
   
+  ######## Plugins for ...
+  # Button Ripple Effect
+  nodewaves:
+    enable: #true
+    css: https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css
+    js: https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js
+
+  # fontawesome animation
+  fontawesome_animation:
+    enable: #true
+    css: https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css
+
+  # Typing Effects
+  comment_typing:
+    enable: #true
+    js: https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@2/js/comment_typing.js
+
   # Slide Background
-  backstretch:
+  parallax:
     enable: true
-    js: https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js
     position: cover       # cover: sticky on the cover.   fixed: Fixed as background for the site.
     shuffle: true         # shuffle playlist
     duration: 10000       # Duration (ms)
@@ -386,7 +503,28 @@ plugins:
       - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover11.webp
       - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover12.webp
       - https://cdn.jsdelivr.net/npm/mcseekeri@1.2.0/img/cover/cover13.webp
+  # APlayer is only available in mainland China.
+  # APlayer config: https://github.com/metowolf/MetingJS
+  aplayer:
+    enable: #true
+    js:
+      aplayer: https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/js/APlayer.mini.js # aplayer@1.10 魔改: 将触摸和滚轮事件监听器标记为 `passive`，以提高页面的滚动性能
+      meting: https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js
+    # Required
+    server: netease   # netease, tencent, kugou, xiami, baidu
+    type: playlist    # song, playlist, album, search, artist
+    id: 3175833810    # song id / playlist id / album id / search keyword
+    # Optional
+    fixed: false      # enable fixed mode
+    theme: '#1BCDFC'  # main color
+    autoplay: false   # audio autoplay
+    order: list       # player play order, values: 'list', 'random'
+    loop: all         # player loop play, values: 'all', 'one', 'none'
+    volume: 0.7       # default volume, notice that player will remember user setting, default volume will not work after user set volume themselves
+    list_max_height: 320px # list max height
+    list_folded: true
 
+  # Pjax
   pjax:
     enable: true
     cover: true          # 封面是否pjax处理 false：每次切换页面封面都重载，适合封面较少的情况 true：封面经过Pjax处理，适合封面较多的情况
@@ -396,15 +534,34 @@ plugins:
     banUrl:              # 被屏蔽的 url 地址将不启用 pjax 跳转，可以在控制台下使用 window.location.pathname 获取
        - /talk/     # artitalk 不支持 pjax
        - /talk/index.html 
+  
+  # 暗黑模式 darkmode
+  # 开关按钮：在 navbar.menu 中添加：
+  # - name: 暗黑模式 # 可自定义
+  #   icon: fas fa-moon # 可自定义
+  #   toggle: darkmode
+  darkmode:
+    enable: true
+
+  # 旧版 Internet Explorer 淘汰行动
+  # https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support
+  # 本主题不支持Internet Explorer的任何版本!!!
+  killOldVersionsOfIE:
+    enable: true
+
+  # 禁用JavaScript提示
+  # 本页面需要浏览器支持（启用）JavaScript
+  # 主题中的某些插件必须启用JavaScript才能正常工作，例如开启scrollreveal如果禁用JavaScript会导致卡片消失
   killNoScript:
-    enable: false
+    enable: true
 
   # Artitalk https://artitalk.js.org
   # 配置过程请参考：https://artitalk.js.org/doc.html
   # 使用过旧版本的请修改Leancloud shuoshuo class部分列名：https://artitalk.js.org/release.html
   # 除appID和appKEY外均为选填项
   artitalk:
-    # Set `layout: artitalk` to enable in page
+    # Set `plugins: ["artitalk"]` to enable in front-matter
+    # 不支持 Pjax
     appId: TRwC4n7CDChkHnl2Qp67cpsr-MdYXbMMI # your appID
     appKey: B6jj4zKhiDTOB8VszVQsLKCk # your appKEY
     # serverURL:  #leancloud绑定的安全域名，使用国际版的话不需要填写
@@ -418,10 +575,88 @@ plugins:
     # color2: #说说背景颜色2&按钮颜色2
     # color3: #说说字体颜色
     # cssUrl: #自定义css接口
+  
+  # BBtalk https://bb.js.org
+  bbtalk:
+    # Set `plugins: ["bbtalk"]` to enable in front-matter
+    # 支持 Pjax
+    js: https://cdn.jsdelivr.net/npm/bbtalk@0.1.5/dist/bbtalk.min.js # BBtalk.js
+    appId: 0KzOX4vC7Jsk6vzUGNeEiUaI-gzGzoHsz # your appID
+    appKey: HwCiWuxfpvKiLm4teCUgTIba # your appKEY
+    serverURLs: https://bbapi.heson10.com # Request Api 域名
 
   tidio:
     enable: #true
     id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  
+  # HexoPlusPlus
+  # https://github.com/HexoPlusPlus/HexoPlusPlus
+  # https://hexoplusplus.js.org/
+  # 无服务器Hexo后端,支持文章编辑,自带图床功能.目标:解决静态博客所有痛点[文章编辑、图片上传、博主活跃信息统计、博主说说、Twikoo加强版、阅读量统计等
+  hpp:
+    # 说说功能
+    # Set `plugins: ["hpptalk"]` to enable in front-matter
+    # 支持 Pjax
+    hpp_talk:
+      css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@latest/talk.css # 建议锁定版本
+      js: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@latest/talk_user.js # 建议锁定版本
+      limit: 10
+      start: 0
+      # 配置项按照yml格式继续填写即可
+      # domain:
+      # themecss:
+    # HexoPlusPlus其他功能暂未集成
+
+  # 友链朋友圈 hexo-circle-of-friends
+  # https://github.com/Rock-Candy-Tea/hexo-circle-of-friends
+  # https://zfe.space/post/friend-link-circle.html
+  fcircle:
+    # Set `plugins: ["fcircle"]` to enable in front-matter
+    # 支持 Pjax
+    api: '' # api 地址
+    max_number: 20 # 页面展示文章数量
+    add_number: 10 # 每次加载增加的篇数
+    opentype: '_blank' # '_blank'打开新标签,'_self'本窗口打开
+    nofollow: true # 禁止搜索引擎抓取
+    # loadingCutom: # 自定义loading图 例如: <i class="fa fa-spinner fa-spin"></i> | <img src="你的图片地址" alt="加载中...">
+
+  # 消息提示
+  message:
+    enable: true
+    icon:     # 默认图标，支持对图标添加颜色，可选值：see：/source/css/_style/_plugins/fontcolor.styl
+      default: fas fa-info-circle light-blue
+      quection: fas fa-question-circle light-blue
+    time:     # 默认持续时间
+      default: 5000
+      quection: 20000
+    position: 'topRight'                 # 弹出位置 可选值：topRight, bottomRight, bottomLeft, topLeft, topCenter, bottomCenter, center
+    transitionIn: 'bounceInLeft'         # 弹窗打开动画 可选值：bounceInLeft, bounceInRight, bounceInUp, bounceInDown, fadeIn, fadeInDown, fadeInUp, fadeInLeft, fadeInRight, flipInX
+    transitionOut: 'fadeOutRight'        # 弹窗关闭动画 可选值：fadeOut, fadeOutUp, fadeOutDown, fadeOutLeft, fadeOutRight, flipOutX
+    titleColor: 'var(--color-text)'      # 标题颜色
+    messageColor: 'var(--color-text)'    # 消息颜色
+    backgroundColor: 'var(--color-card)' # 默认背景色
+    zindex: 2147483647                   # 层级
+    copyright:                           # 是否在复制时弹出版权提示，影响范围：ctrl+c、代码块复制按钮、右键复制选项
+      enable: true
+      title: '知识共享许可协议'
+      message: '请遵守 CC BY-NC-SA 4.0 协议。'
+      icon: 'far fa-copyright light-blue'
+    aplayer:                              # 是否开启音乐通知；播放、暂停、失败 时的图标
+      enable: true
+      play: fas fa-play
+      pause: fas fa-pause
+    rightmenu:                            # 是否开启右键模块的消息通知
+      enable: true
+  
+  # 标签插件样式按需加载
+  # 每次调试需要执行 hexo clean, 否则由于错误的缓存会抛异常
+  tag_plugin_load_on_demand:
+    enable: true
+    # 每个页面强制加载以下标签插件样式
+    plugins:
+      - note
+      - btns
+      - p
 
 ############################### Plugins ############################### > end
 
@@ -429,55 +664,26 @@ plugins:
 # 自定义右键菜单
 rightmenu:
   enable: true
+  faicon: fa
   # hr: 分割线, music: 音乐控制器
-  layout: [open_new, copy_text, copy_src, copy_href, navigation, print, hr, music]
+  layout: [home, hr, print, darkmode, reading, music]
   # 可选功能项
-  open_new:
-    name: 在新标签页打开
-    icon: fal fa-external-link-square-alt
-    id: menu-open-new
-  copy_text:
-    name: 复制文本
-    icon: fal fa-copy
-    id: menu-copy-text
-    onclick: document.execCommand('copy')
-  copy_src:
-    name: 复制图片地址
-    icon: fal fa-image
-    id: menu-copy-src
-  copy_href:
-    name: 复制链接
-    icon: fal fa-link
-    id: menu-copy-href
-  print:
+  print:                  # 只有文章页才允许自定义打印
     name: 打印页面
     icon: fa fa-print
-    onclick: document.execCommand('print')
-  # 自定义菜单的格式如下
-  help:
-    name: 常见问题
-    icon: fa fa-question
-    url: https://volantis.js.org/faqs/
-  examples:
-    name: 示例博客
-    icon: fa fa-rss
-    url: https://volantis.js.org/examples/
-  contributors:
-    name: 加入社区
-    icon: fa fa-fan fa-spin
-    url: https://volantis.js.org/contributors/
-  source_docs:
-    name: 本站源码
-    icon: fa fa-code-branch
-    url: https://github.com/volantis-x/volantis-docs/
-  source_theme:
-    name: 主题源码
-    icon: fa fa-code-branch
-    url: https://github.com/volantis-x/hexo-theme-volantis/
-  dark_mode:
-    name: 夜间模式
-    icon: fas fa-moon
-    toggle: darkmode
+    defaultStyles: true   # 是否使用预制的打印样式
+    # js:                 # 自定义 js ，可用于修饰打印样式~， 右键剔除了对 Jquery 的依赖，所以此处你只能使用原生 js
+    #  - document.querySelector('article#comments').remove()  # 移除评论
+  darkmode:        # 需开启 plugins.darkmodejs
+    name: 暗黑模式
+    icon: fa fa-moon
+  reading:
+    name: 阅读模式
+    icon: fa fa-book-open
+  customPicUrl:    # 右键的图片复制：只有 Chrome 支持，且只支持 PNG 格式的图片。
+    enable: false  # 如果使用了对象存储且开启了自适应 Webp，那么可以提供额外的链接用以替换图片的访问地址
+    old: #https://static.inkss.cn/img/article/
+    new: #https://cdn.jsdelivr.net/gh/inkss/inkss-cdn@master/img/article/
 ############################### Rightmenu ############################### > end
 
 
@@ -486,24 +692,104 @@ rightmenu:
 # npm i hexo-generator-search hexo-generator-json-content
 search:
   enable: true
-  service: hexo  # hexo, google, algolia, azure, baidu
+  service: hexo  # hexo
   js:
-  google:
-    apiKey:
-    engineId:
-  algolia:
-    applicationID:
-    apiKey:
-    indexName:
-  azure:
-    serviceName:
-    indexName:
-    queryKey:
-  baidu:
-    apiId:
 ############################### Search ############################### > end
 
 ############################### Color Scheme ############################### > start
+# Accessibility: 背景色和前景色要有足够的对比度 https://web.dev/color-contrast/
+color_scheme:
+  # ------------
+  # 通用颜色
+  common:
+    # 主题色
+    theme: '#44D7B6'
+    # 链接色
+    link: '#1b79c4'
+    # 按钮色
+    button: '#44D7B6'
+    # 鼠标放到交互元素上时的色
+    hover: '#ff5722'
+    # 主题色块内部的文字颜色
+    inner: '#fff'
+    # 选中区域文字的背景颜色
+    selection: 'alpha(#2196f3, 0.2)'
+  # ------------
+  # 亮色主题（默认）
+  light:
+    # 网站背景色
+    site_bg: '#f4f4f4'
+    # 网站背景上的文字
+    site_inner: '#fff'
+    # 网站页脚文字
+    site_footer: '#666'
+
+    # 卡片背景色
+    card: '#fff'
+    # 卡片上的普通文字
+    text: '#444'
+
+    # 区块和代码块背景色
+    block: '#f6f6f6'
+    # 代码块高亮时的背景色
+    codeblock: '#FFF7EA'
+    # 行内代码颜色
+    inlinecode: '#c74f00'
+
+    # 文章部分
+    h1: '#3a3a3a'
+    h2: '#3a3a3a'
+    h3: '#333'
+    h4: '#444'
+    h5: '#555'
+    h6: '#666'
+    p: '#444'
+
+    # 列表文字
+    list: '#666'
+    # 列表 hover 时的文字
+    list_hl: 'mix($color-theme, #000, 80)'
+    # 辅助性文字
+    meta: '#888'
+  # ------------
+  # 暗色主题
+  dark:
+    # 网站背景色
+    site_bg: '#222'
+    # 网站背景上的文字
+    site_inner: '#eee'
+    # 网站页脚文字
+    site_footer: '#aaa'
+    # 卡片背景色
+    card: '#333'
+    # 卡片上的普通文字
+    text: '#eee'
+
+    # 区块和代码块背景色
+    block: '#3a3a3a'
+    # 代码块高亮时的背景色
+    codeblock: '#343a3c'
+    # 行内代码颜色
+    inlinecode: '#D56D28'
+
+    # 文章部分
+    h1: '#eee'
+    h2: '#eee'
+    h3: '#ddd'
+    h4: '#ddd'
+    h5: '#ddd'
+    h6: '#ddd'
+    p: '#bbb'
+
+    # 列表文字
+    list: '#aaa'
+    # 列表 hover 时的文字
+    list_hl: 'mix($color-theme, #fff, 80)'
+    # 辅助性文字
+    meta: '#888'
+    # 夜间图片亮度
+    brightness: 70%
+
 ############################### Color Scheme ############################### > end
 
 ############################### Custom css ############################### > start
@@ -518,7 +804,51 @@ custom_css:
     zoom-out: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/alternate.cur
     zoom-in: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/alternate.cur
     grab: https://cdn.jsdelivr.net/gh/Linhk1606/blog-cdn@0.0.7.4/cursors/move.cur
-  
+  font_smoothing: true # font-smoothing for webkit
+  max_width: 1080px # Sum of body width and sidebar width (This limit will be exceeded when the device width is greater than 2000px, reaching 75% of the total width)
+  scrollbar:
+    size: 4px
+    border: 2px
+  navbar:
+    height: 64px
+    width: auto # auto, max
+    effect: [shadow, blur] # [shadow, floatable, blur]
+  sidebar:
+    effect: [shadow] # [shadow, floatable, blur]
+  body:
+    effect: [shadow] # [shadow, floatable, blur]
+    highlight:
+      language: true # show language of codeblock
+      grayscale: false # Enable grayscale effect
+    text_align: # left, right, justify, center
+      h1: left
+      h2: left
+      h3: left
+      h4: left
+      p: justify
+  gap:
+    h2: 48px # Spacing above H2 (only px unit)
+    h3: 24px # Spacing above H3 (only px unit)
+    h4: 16px # Spacing above H4 (only px unit)
+    p: 1em # Paragraph spacing between paragraphs
+    line_height: 1.6 # normal, 1.5, 1.75, 2 ...
+  border_radius:
+    card: 8px
+    codeblock: 4px
+    searchbar: 8px
+    button: 4px
+  fontsize:
+    root: 16px
+    h1: 1.5rem # 不推荐用在文章中
+    h2: 1.5rem
+    h3: 1.25rem
+    h4: 1.125rem
+    h5: 1rem
+    h6: 1rem
+    list: .9375rem
+    meta: .875rem
+    code: .8125rem
+    footnote: .78125rem
   fontfamily:
     logofont:
       #fontfamily: '"Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial'
@@ -567,3 +897,33 @@ seo:
     tag: index,follow
     # robots can be written in front-matter
 ############################### SEO ############################### > end
+############################### Open Graph ############################### > start
+# https://ogp.me/
+# https://hexo.io/zh-cn/docs/helpers#open-graph
+open_graph:
+  image: https://cdn.jsdelivr.net/npm/mcseekeri@1.2.9/avatar/madobe.png
+  twitter_card: summary # summary_large_image , summary
+  #twitter_id:
+  #twitter_site:
+############################### Open Graph ############################### > end
+
+############################### Structured Data ############################### > start
+# SEO 入门文档: https://developers.google.com/search/docs
+# https://schema.org.cn/
+# 结构化数据用于更改搜索结果的显示效果
+# 目前内置的结构化数据: blogposting, breadcrumblist, organization, person, website
+# 目前内置的富媒体搜索结果: 路径(面包屑导航), 徽标(Logo), 站点链接搜索框(SearchAction)
+# https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data
+# 富媒体搜索结果测试: https://search.google.com/test/rich-results
+structured_data:
+  enable: true
+  # 以下是覆盖配置, 默认配置见 scripts/helpers/structured-data/lib/config.js
+  data:
+    person:
+      sns:
+        - https://github.com/MCSeekeri
+    logo:
+      path: https://cdn.jsdelivr.net/npm/mcseekeri@1.2.9/avatar/madobe.png
+      width: 192
+      height: 192
+############################### Structured Data ############################### > end

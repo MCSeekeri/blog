@@ -1,11 +1,19 @@
+// 为1个属性设置动画
+trans1($op, $time = 0.2s)
+  transition: $op $time ease-out
 
+// 为2个属性设置动画
+trans2($op1, $op2)
+  transition: $op1 0.2s ease-out, $op2 0.2s ease-out
+
+trans2pro($op1, $t1, $op2, $t2)
+  transition: $op1 $t1 ease-out, $op2 $t2 ease-out
+
+trans3($op1, $op2, $op3)
+  transition: $op1 0.2s ease-out, $op2 0.2s ease-out, $op3 0.2s ease-out
 
 trans($time = 0.28s)
   transition: all $time ease
-  -moz-transition: all $time ease
-  -webkit-transition: all $time ease
-  -o-transition: all $time ease
-
 
 hoverable-card()
   trans()
@@ -28,9 +36,6 @@ placeholder(rules)
     rules()
 
 disable-user-select()
-  -moz-user-select: none
-  -ms-user-select: none
-  -webkit-user-select: none
   user-select: none
 
 scrollbar($w = 4px, $b = 2px, $c = $color-theme, $h = $color-hover)
@@ -62,26 +67,3 @@ scrollbar-codeblock()
       background: alpha($color-text, .5)
       &:hover
         background: $color-hover
-
-dark()
-  --color-site-body: black
-  --color-site-bg: convert(hexo-config('color_scheme.dark.site_bg'))
-  --color-site-inner: convert(hexo-config('color_scheme.dark.site_inner'))
-  --color-site-footer: convert(hexo-config('color_scheme.dark.site_footer'))
-  --color-card: convert(hexo-config('color_scheme.dark.card'))
-  --color-text: convert(hexo-config('color_scheme.dark.text'))
-
-  --color-block: convert(hexo-config('color_scheme.dark.block'))
-  --color-codeblock: convert(hexo-config('color_scheme.dark.codeblock'))
-  --color-inlinecode: convert(hexo-config('color_scheme.dark.inlinecode'))
-  --color-h1: convert(hexo-config('color_scheme.dark.h1'))
-  --color-h2: convert(hexo-config('color_scheme.dark.h2'))
-  --color-h3: convert(hexo-config('color_scheme.dark.h3'))
-  --color-h4: convert(hexo-config('color_scheme.dark.h4'))
-  --color-h5: convert(hexo-config('color_scheme.dark.h5'))
-  --color-h6: convert(hexo-config('color_scheme.dark.h6'))
-  --color-p: convert(hexo-config('color_scheme.dark.p'))
-  --color-list: convert(hexo-config('color_scheme.dark.list'))
-  --color-list-hl: convert(hexo-config('color_scheme.dark.list_hl'))
-  --color-meta: convert(hexo-config('color_scheme.dark.meta'))
-  --color-link: convert(hexo-config('color_scheme.dark.meta'))
